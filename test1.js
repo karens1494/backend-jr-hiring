@@ -1,4 +1,13 @@
 
 module.exports = function Test1(server) {
-  server.on('name', data => data);
+  let result = new Promise((resolve, reject) => {
+    server.on("name", (data) => {
+      if (data) {
+        return resolve(data);
+      } else {
+        return reject("Error in method of server");
+      }
+    });
+  });
+  return result;
 }
